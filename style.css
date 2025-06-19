@@ -1,0 +1,281 @@
+  /* --- Estilos Generales --- */
+  
+
+        body {
+            margin: 0;
+            overflow: hidden; /* Oculta barras de desplazamiento */
+           
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* --- Estilos del Canvas (Fondo de Estrellas) --- */
+        canvas {
+            display: block;
+            position: fixed; /* Fija el canvas al fondo */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Envía el canvas detrás de todo lo demás */
+        }
+
+        /* --- Estilos del Botón del Menú --- */
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100; /* Asegura que esté por encima de todo */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        .menu-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Estilos del Menú Lateral --- */
+        .sidenav {
+            height: 100%; /* Ocupa toda la altura */
+            width: 0; /* Ancho inicial: oculto */
+            position: fixed; /* Fijo en la pantalla */
+            z-index: 99; /* Por encima del canvas, debajo del botón */
+            top: 0;
+            left: 0;
+            background-color: rgba(17, 17, 17, 0.9); /* Fondo semi-transparente */
+            overflow-x: hidden; /* Oculta contenido que desborda horizontalmente */
+            transition: 0.5s; /* Transición suave para abrir/cerrar */
+            padding-top: 100px; /* Espacio superior para el botón de cierre */
+            border-right: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+           
+     
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* --- Contenido Principal (solo para demostrar que el menú no lo cubre) --- */
+        .main-content {
+            margin-left: 0; /* Sin margen inicial */
+            padding: 20px;
+            transition: margin-left 0.5s; /* Transición para cuando el menú empuja el contenido */
+            position: relative;
+            z-index: 1; /* Asegura que el contenido esté por encima del canvas */
+        }/* --- Estilos Generales y Mobile-First (Base) --- */
+/* Estos estilos se aplicarán por defecto, diseñando para pantallas pequeñas primero */
+
+body {
+    margin: 0;
+    overflow-x: hidden; /* Oculta barras de desplazamiento horizontales */
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+header {
+    background-color: rgb(9, 9, 58);
+    display: flex;
+    justify-content: end; /* Alinea elementos al inicio, útil para el menú */
+    align-items: center; /* Centra verticalmente si hay elementos en el header */
+    padding: 40px; /* Padding fijo en píxeles */
+    box-sizing: border-box; /* Incluye padding en el ancho total */
+    position: relative; /* Para z-index si hay elementos dentro */
+    z-index: 2; /* Asegura que el header esté sobre el canvas */
+}
+
+/* --- Estilos del Canvas (Fondo de Estrellas) --- */
+canvas {
+    display: block;
+    position: fixed; /* Fija el canvas al fondo */
+    top: 0;
+    left: 0;
+    width: 100%; /* Asegura que cubra todo el ancho */
+    height: 100%; /* Asegura que cubra toda la altura */
+    z-index: -1; /* Envía el canvas detrás de todo lo demás */
+}
+
+/* --- Estilos del Botón del Menú (Hamburguesa) --- */
+.menu-button {
+    position: fixed;
+    top: 20px; /* Separación de arriba */
+    left: 20px; /* Separación de la izquierda */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px; /* Ajustado para móviles */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em; /* Ajustado para móviles */
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Estilos del Menú Lateral (Sidebar) --- */
+.sidenav {
+    height: 100%; /* Ocupa toda la altura */
+    width: 0; /* Ancho inicial: oculto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 999; /* Por encima del canvas, debajo del botón */
+    top: 0;
+    left: 0;
+    background-color: rgba(7, 6, 72, 0.564); /* Fondo más opaco */
+    overflow-x: hidden; /* Oculta contenido que desborda horizontalmente */
+    transition: 0.5s; /* Transición suave para abrir/cerrar */
+    padding-top: 80px; /* Más espacio superior para el botón de cierre y header */
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    box-sizing: border-box; /* Asegura que padding no aumente el ancho total */
+}
+
+.sidenav a {
+    padding: 10px 8px 10px 32px; /* Aumenta el padding vertical */
+    text-decoration: none;
+    font-size: 22px; /* Ajustado para mejor lectura en sidebar */
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 20px; /* Alinea con el botón de menú */
+    right: 25px;
+    font-size: 36px;
+    color: #fff; /* Color blanco para el botón de cierre */
+}
+
+/* --- Contenido Principal --- */
+.main-content {
+    margin-left: 0; /* Sin margen inicial */
+    padding: 20px; /* Padding por defecto */
+    transition: margin-left 0.5s; /* Transición para cuando el menú empuja el contenido */
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del canvas */
+    box-sizing: border-box;
+}
+
+/* --- Media Queries --- */
+
+/* Teléfonos grandes y tabletas pequeñas (ej. >= 480px) */
+@media screen and (min-width: 480px) {
+    .menu-button {
+        padding: 12px 18px; /* Ligeramente más grande */
+        font-size: 1.15em;
+    }
+
+    .sidenav {
+        padding-top: 80px;
+    }
+
+    .sidenav a {
+        font-size: 24px;
+    }
+}
+
+
+/* Tabletas (ej. >= 768px) */
+@media screen and (min-width: 768px) {
+    .menu-button {
+        display: none; /* Oculta el botón de hamburguesa */
+    }
+
+    .sidenav {
+        width: 200px; /* Menú lateral siempre visible */
+        position: relative; /* Ya no está fijo, se mueve con el scroll */
+        height: auto; /* Altura se adapta al contenido */
+        padding-top: 0; /* No necesita padding superior si el header lo tiene */
+        background-color: transparent; /* Transparente si no se superpone */
+        box-shadow: none;
+        float: left; /* Flota a la izquierda del contenido principal */
+        border-right: none; /* Elimina el borde si no está fijo */
+    }
+
+    .sidenav a {
+        color: white; /* Enlaces blancos en el menú siempre visible */
+        font-size: 18px; /* Tamaño de fuente más pequeño para desktop */
+        padding: 15px 20px; /* Más padding para desktop */
+    }
+
+    .sidenav .closebtn {
+        display: none; /* No se necesita botón de cierre */
+    }
+
+    .main-content {
+        margin-left: 220px; /* Deja espacio para el menú lateral */
+        padding-top: 30px; /* Padding superior para el contenido */
+        overflow-y: auto; /* Permite scroll solo en el contenido si es largo */
+        height: 100vh; /* Para que el scroll sea solo en esta sección si el header es fijo */
+    }
+
+    /* Ajuste para el body si el header es fijo */
+    body {
+        overflow-y: auto; /* Permite el scroll principal en pantallas grandes */
+    }
+}
+
+/* Escritorios grandes (ej. >= 1024px) */
+@media screen and (min-width: 1024px) {
+    header {
+        padding:0%; /* Aumenta el padding del header */
+    }
+
+    .sidenav {
+        width: 250px; /* Menú lateral un poco más ancho */
+    }
+
+    .sidenav a {
+        font-size: 20px;
+        padding: 20px 25px;
+    }
+
+    .main-content {
+        margin-left: 270px; /* Más espacio para el menú más ancho */
+        padding: 40px;
+    }
+}
+
+/* Escritorios muy grandes (ej. >= 1440px) */
+@media screen and (min-width: 1440px) {
+    header {
+        padding: 30px 60px;
+    }
+    .sidenav {
+        width: 300px; /* Menú lateral aún más ancho */
+    }
+    .main-content {
+        margin-left: 320px; /* Más espacio para el menú */
+        padding: 50px;
+    }
+}
